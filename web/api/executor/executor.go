@@ -27,7 +27,7 @@ func ExecuteHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	output, err := image.RunImage(req.Name, req.ImportPath)
+	output, err := image.RunImage(req.Name, req.ImportPath, "entities")
 	resp := execResponse{
 		Output: output,
 	}
