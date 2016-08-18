@@ -1,15 +1,14 @@
-package executor
+package api
 
 import (
 	"encoding/json"
 	"net/http"
-
-	"github.com/naveego/pipeline-api/connector/image"
 )
 
 type execRequest struct {
-	Name       string `json:"name"`
-	ImportPath string `json:"importPath"`
+	Name       string                 `json:"name"`
+	ImportPath string                 `json:"importPath"`
+	Settings   map[string]interface{} `json:"settings"`
 }
 
 type execResponse struct {
@@ -18,7 +17,7 @@ type execResponse struct {
 	ErrorMessage string `json:"error,omitempty"`
 }
 
-func ExecuteHandler(w http.ResponseWriter, r *http.Request) {
+func EntitiesHandler(w http.ResponseWriter, r *http.Request) {
 
 	var req execRequest
 	err := json.NewDecoder(r.Body).Decode(&req)
@@ -27,7 +26,7 @@ func ExecuteHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	output, err := image.RunImage(req.Name, req.ImportPath, "entities")
+	output, err := runImageCommand(req.Name, req.ImportPath, req.Settings, "entities")
 	resp := execResponse{
 		Output: output,
 	}

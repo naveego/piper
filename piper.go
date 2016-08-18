@@ -11,7 +11,7 @@ import (
 	"github.com/Sirupsen/logrus"
 	"github.com/googollee/go-socket.io"
 	"github.com/gorilla/mux"
-	"github.com/naveego/piper/web/api/executor"
+	"github.com/naveego/piper/web/api"
 )
 
 var (
@@ -75,5 +75,10 @@ func launchBrowser(addr string) {
 }
 
 func mapAPIRoutes(r *mux.Router) {
-	r.HandleFunc("/api/execute", executor.ExecuteHandler)
+	r.HandleFunc("/api/entities", api.EntitiesHandler)
+	r.HandleFunc("/api/publish", api.PublishHandler)
+
+	// Map Pipeline API simulator
+	r.PathPrefix("/pipeline/settings").HandlerFunc(api.PipelineSettingsHandler)
+	r.HandleFunc("/pipeline/publish", api.PipelinePublishHandler)
 }
