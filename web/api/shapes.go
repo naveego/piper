@@ -26,7 +26,7 @@ func EntitiesHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	output, err := runImageCommand(req.Name, req.ImportPath, req.Settings, "entities")
+	output, err := runImageCommand(req.Name, req.ImportPath, req.Settings, "shapes")
 	resp := execResponse{
 		Output: output,
 	}

@@ -1,19 +1,19 @@
 var Runner = function(options) {
-    _.bindAll(this, 'runGetEntities', 'runPublish');
+    _.bindAll(this, 'runGetShapes', 'runPublish');
 
     this.options = _.extend({
         formEl: $('#runForm'),
         resultsEl: $('#results'),
-        entityEl: $('#entitiesButton'),
+        shapesEl: $('#shapesButton'),
         publishEl: $('#publishButton')
     }, options || {});
 
     this.form = $(this.options.formEl);
-    this.entityButton = $(this.options.entityEl);
+    this.shapesButton = $(this.options.shapesEl);
     this.publishButton = $(this.options.publishEl);
     this.results = $(this.options.resultsEl);
 
-    this.entityButton.click(this.runGetEntities);
+    this.shapesButton.click(this.runGetShapes);
     this.publishButton.click(this.runPublish);
 
     if(localStorage) {
@@ -29,9 +29,9 @@ var Runner = function(options) {
 
 _.extend(Runner.prototype, {
 
-    runGetEntities: function(e) {
+    runGetShapes: function(e) {
         e.preventDefault();
-        this.runCommand('/api/entities');
+        this.runCommand('/api/shapes');
     },
 
     runPublish: function(e) {

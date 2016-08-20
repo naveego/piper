@@ -75,7 +75,7 @@ func launchBrowser(addr string) {
 }
 
 func mapAPIRoutes(r *mux.Router) {
-	r.HandleFunc("/api/entities", api.EntitiesHandler)
+	r.HandleFunc("/api/shapes", api.EntitiesHandler)
 	r.HandleFunc("/api/publish", api.PublishHandler)
 
 	// Map Pipeline API simulator
