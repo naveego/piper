@@ -1,20 +1,23 @@
 var Runner = function(options) {
-    _.bindAll(this, 'runGetShapes', 'runPublish');
+    _.bindAll(this, 'runGetShapes', 'runPublish', 'runSubscribe');
 
     this.options = _.extend({
         formEl: $('#runForm'),
         resultsEl: $('#results'),
         shapesEl: $('#shapesButton'),
-        publishEl: $('#publishButton')
+        publishEl: $('#publishButton'),
+        subscribeEl: $('#subscribeButton')
     }, options || {});
 
     this.form = $(this.options.formEl);
     this.shapesButton = $(this.options.shapesEl);
     this.publishButton = $(this.options.publishEl);
+    this.subscribeButton = $(this.options.subscribeEl);
     this.results = $(this.options.resultsEl);
 
     this.shapesButton.click(this.runGetShapes);
     this.publishButton.click(this.runPublish);
+    this.subscribeButton.click(this.runSubscribe);
 
     if(localStorage) {
         connectorInfo = localStorage.getItem("connectorInfo");
@@ -37,6 +40,11 @@ _.extend(Runner.prototype, {
     runPublish: function(e) {
         e.preventDefault();
         this.runCommand('/api/publish');
+    },
+
+    runSubscribe: function(e) {
+        e.preventDefault();
+        this.runCommand('/api/subscribe');
     },
 
     runCommand: function(path) {

@@ -77,6 +77,7 @@ func launchBrowser(addr string) {
 func mapAPIRoutes(r *mux.Router) {
 	r.HandleFunc("/api/shapes", api.EntitiesHandler)
 	r.HandleFunc("/api/publish", api.PublishHandler)
+	r.HandleFunc("/api/subscribe", api.SubscribeHandler)
 
 	// Map Pipeline API simulator
 	r.PathPrefix("/pipeline/settings").HandlerFunc(api.PipelineSettingsHandler)

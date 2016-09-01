@@ -3,7 +3,7 @@ package api
 import (
 	"sync"
 
-	"github.com/naveego/pipeline-api/connector/image"
+	"github.com/naveego/pipeline-api/cli"
 )
 
 var (
@@ -32,6 +32,6 @@ func runImageCommand(name, importPath string, settings map[string]interface{}, a
 	args = append(args, "-r=test")
 	args = append(args, "-s=testsource")
 	args = append(args, "-u=http://localhost:8082/pipeline")
-	output, err := image.RunImage(name, importPath, args...)
+	output, err := cli.RunImage(name, importPath, args...)
 	return output, err
 }
